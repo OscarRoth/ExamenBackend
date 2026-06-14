@@ -18,3 +18,6 @@ Responsabilidades:
 - Registro del proceso de trabajo.
 - Documentación técnica del proyecto.
 - Control de versiones con Git.
+
+Incorporacion de la tabla intermedia ¨Inscripcion¨
+La incorporé para modelar correctamente la relación muchos a muchos entre Alumno y Cursada, permitiendo mantener la base de datos en tercera forma normal y evitando redundancia de información."
