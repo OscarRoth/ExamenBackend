@@ -141,7 +141,7 @@ class AsignacionExamen(models.Model):
     class Meta:
         unique_together = ('examen', 'alumno')
         verbose_name = "Asignación Exámen"
-        verbose_name_plural = "Asignacion Examenes"
+        verbose_name_plural = "Asignación Examenes"
 
     def __str__(self):
         return f"{self.examen} - {self.alumno}"
