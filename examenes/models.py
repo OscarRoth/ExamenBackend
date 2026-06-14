@@ -83,8 +83,80 @@ class Inscripcion(models.Model):
     )
     fecha_inscripcion = models.DateField(auto_now_add=True)
 
-    class Meta:
-        unique_together = ('alumno', 'cursada')
+class Meta:
+    unique_together = ('alumno', 'cursada')
 
     def __str__(self):
         return f"{self.alumno} - {self.cursada}"
+    
+class Examen(models.Model):
+    titulo = models.CharField(max_length=150)
+    fecha_creacion = models.DateField(auto_now_add=True)
+    cursada = models.ForeignKey(
+        Cursada,
+        on_delete=models.CASCADE,
+        related_name='examenes'
+    )
+
+    def __str__(self):
+        return self.titulo
+
+
+class AsignacionExamen(models.Model):
+    examen = models.ForeignKey(
+        Examen,
+        on_delete=models.CASCADE,
+        related_name='asignaciones'
+    )
+    alumno = models.ForeignKey(
+        Alumno,
+        on_delete=models.CASCADE,
+        related_name='asignaciones_examenes'
+    )
+    fecha_asignacion = models.DateField(auto_now_add=True)
+    fecha_resolucion = models.DateField(
+        null=True,
+        blank=True
+    )
+    calificacion = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+    observaciones = models.TextField(
+        blank=True
+    )
+
+    class Meta:
+        unique_together = ('examen', 'alumno')
+
+    def __str__(self):
+        return f"{self.examen} - {self.alumno}"
+
+
+class Pregunta(models.Model):
+    examen = models.ForeignKey(
+        Examen,
+        on_delete=models.CASCADE,
+        related_name='preguntas'
+    )
+    fecha_creacion = models.DateField(auto_now_add=True)
+    titulo = models.CharField(max_length=150)
+    descripcion = models.TextField()
+
+    def __str__(self):
+        return self.titulo
+
+
+class Respuesta(models.Model):
+    pregunta = models.ForeignKey(
+        Pregunta,
+        on_delete=models.CASCADE,
+        related_name='respuestas'
+    )
+    texto = models.TextField()
+    es_correcta = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.texto[:50]
