@@ -8,6 +8,10 @@ class Profesor(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
+    
+    class Meta:
+        verbose_name = "Profesor"
+        verbose_name_plural = "Profesores"
 
 class Alumno(models.Model):
     nombre = models.CharField(max_length=100)
@@ -85,6 +89,8 @@ class Inscripcion(models.Model):
 
     class Meta:
         unique_together = ('alumno', 'cursada')
+        verbose_name = "Inscripción"
+        verbose_name_plural = "Inscripciones"
 
     def __str__(self):
         return f"{self.alumno} - {self.cursada}"
@@ -100,6 +106,10 @@ class Examen(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+    class Meta:
+        verbose_name = "Exámen"
+        verbose_name_plural = "Examenes"
 
 
 class AsignacionExamen(models.Model):
@@ -130,6 +140,8 @@ class AsignacionExamen(models.Model):
 
     class Meta:
         unique_together = ('examen', 'alumno')
+        verbose_name = "Asignación Exámen"
+        verbose_name_plural = "Asignacion Examenes"
 
     def __str__(self):
         return f"{self.examen} - {self.alumno}"
