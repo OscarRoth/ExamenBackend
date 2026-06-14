@@ -83,8 +83,8 @@ class Inscripcion(models.Model):
     )
     fecha_inscripcion = models.DateField(auto_now_add=True)
 
-class Meta:
-    unique_together = ('alumno', 'cursada')
+    class Meta:
+        unique_together = ('alumno', 'cursada')
 
     def __str__(self):
         return f"{self.alumno} - {self.cursada}"
