@@ -32,3 +32,59 @@ class Asignatura(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Cursada(models.Model):
+    ESTADO_ACTIVA = 'activa'
+    ESTADO_FINALIZADA = 'finalizada'
+
+    ESTADOS = [
+        (ESTADO_ACTIVA, 'Activa'),
+        (ESTADO_FINALIZADA, 'Finalizada'),
+    ]
+
+    nombre = models.CharField(max_length=100)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    estado = models.CharField(
+        max_length=20,
+        choices=ESTADOS,
+        default=ESTADO_ACTIVA
+    )
+    profesor = models.ForeignKey(
+        Profesor,
+        on_delete=models.CASCADE,
+        related_name='cursadas'
+    )
+    asignatura = models.ForeignKey(
+        Asignatura,
+        on_delete=models.CASCADE,
+        related_name='cursadas'
+    )
+    alumnos = models.ManyToManyField(
+        Alumno,
+        through='Inscripcion',
+        related_name='cursadas'
+    )
+
+    def __str__(self):
+        return self.nombre
+
+
+class Inscripcion(models.Model):
+    alumno = models.ForeignKey(
+        Alumno,
+        on_delete=models.CASCADE,
+        related_name='inscripciones'
+    )
+    cursada = models.ForeignKey(
+        Cursada,
+        on_delete=models.CASCADE,
+        related_name='inscripciones'
+    )
+    fecha_inscripcion = models.DateField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('alumno', 'cursada')
+
+    def __str__(self):
+        return f"{self.alumno} - {self.cursada}"
