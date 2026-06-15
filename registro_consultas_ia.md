@@ -10,8 +10,6 @@ Utilicé IA fue como recurso de consulta y acompañamiento técnico. La implemen
 
 ## Organización del trabajo
 
-Aunque el examen fue planteado para realizarse en grupo, decidí desarrollarlo de forma individual.
-
 Con el objetivo de mantener una organización similar a la de un entorno colaborativo real y optimizar el desarrollo, dividí el trabajo en dos roles diferenciados.
 
 ### Rol 1: Arquitectura y Base de Datos
