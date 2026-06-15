@@ -1,54 +1,81 @@
-# Registro de consultas realizadas con IA
+# Registro de consultas realizadas con IA por Norberto Oscar Roth
 
 ## Objetivo
 
-Durante el desarrollo del proyecto se utilizó asistencia de IA como apoyo para resolver dudas de implementación, organización del proyecto y validación de decisiones de diseño.
+Durante el desarrollo de este proyecto utilicé asistencia de IA como herramienta de apoyo para resolver dudas de implementación, organización del proyecto y validación de decisiones de diseño.
 
-La IA fue utilizada como herramienta de consulta y acompañamiento técnico, mientras que la implementación, pruebas y verificación final fueron realizadas manualmente sobre el proyecto.
+Utilicé IA fue como recurso de consulta y acompañamiento técnico. La implementación, las pruebas, la validación de resultados y las decisiones finales fueron realizadas por mí sobre el proyecto desarrollado.
 
 ---
 
-## Consulta 1: Organización del repositorio Git
+## Organización del trabajo
 
-Se consultó sobre la forma correcta de trabajar con ramas para representar los distintos roles del examen.
+Aunque el examen fue planteado para realizarse en grupo, decidí desarrollarlo de forma individual.
+
+Con el objetivo de mantener una organización similar a la de un entorno colaborativo real y optimizar el desarrollo, dividí el trabajo en dos roles diferenciados.
+
+### Rol 1: Arquitectura y Base de Datos
+
+Responsabilidades:
+
+* Diseño de modelos.
+* Definición de relaciones entre entidades.
+* Aplicación de criterios de normalización.
+* Generación y aplicación de migraciones.
+* Validación de la estructura de datos.
+
+### Rol 2: Administración y Consultas
+
+Responsabilidades:
+
+* Configuración del panel de administración de Django.
+* Carga de datos de prueba.
+* Implementación y validación de consultas ORM.
+* Verificación funcional del sistema.
+* Documentación y preparación de la entrega.
+
+Esta división me permitió organizar mejor las tareas y mantener una metodología de trabajo similar a la que se utilizaría en un equipo de desarrollo.
+
+---
+
+## 1. Organización del repositorio Git
+
+Consulté sobre la forma correcta de organizar el repositorio y trabajar con ramas para representar los distintos roles definidos durante el desarrollo.
 
 Temas tratados:
 
 * Creación de ramas de trabajo.
-* Uso de GitHub para subir cambios.
-* Diferencias entre `main`, `modelos-bd` y `admin-consultas`.
-* Integración de ramas mediante merge.
-* Resolución de errores al intentar realizar commits y pushes.
+* Uso de GitHub para versionar y subir cambios.
+* Diferencias entre las ramas `main`, `modelos-bd` y `admin-consultas`.
+* Integración de cambios mediante merge.
+* Resolución de errores relacionados con commits y pushes.
 
 Resultado:
 
-Se definieron ramas separadas para representar los distintos roles y se mantuvo un historial de commits identificable.
+Se definieron ramas separadas para organizar el trabajo y se mantuvo un historial de commits identificable y coherente.
 
 ---
 
-## Consulta 2: Diseño de modelos y normalización
+## 2. Diseño de modelos y normalización
 
-Se consultó sobre la estructura adecuada para representar:
+Consulté sobre la estructura adecuada para representar profesores, alumnos, asignaturas, cursadas, exámenes y demás entidades requeridas por la consigna.
 
-* Profesores.
-* Alumnos.
-* Asignaturas.
-* Cursadas.
-* Exámenes.
-* Preguntas.
-* Respuestas.
+Durante el análisis surgió la necesidad de modelar correctamente la relación entre alumnos y cursadas. Para evitar redundancia de información y cumplir con los criterios de tercera forma normal (3FN), decidí implementar una tabla intermedia denominada `Inscripcion`.
 
-También se analizó la conveniencia de utilizar tablas intermedias para relaciones muchos a muchos.
+Esta entidad permite representar la relación muchos a muchos entre alumnos y cursadas sin duplicar datos, manteniendo cada concepto en su propia tabla y evitando dependencias transitivas.
 
 Resultado:
 
-Se implementó la entidad `Inscripcion` para representar la relación entre alumnos y cursadas, aplicando criterios de tercera forma normal (3FN) y evitando redundancia de datos.
+* Modelos normalizados en tercera forma normal (3FN).
+* Separación clara de responsabilidades entre entidades.
+* Implementación de la tabla intermedia `Inscripcion`.
+* Reducción de redundancia y mejora de la integridad de los datos.
 
 ---
 
-## Consulta 3: Migraciones y administración
+## 3. Migraciones y administración
 
-Se solicitaron indicaciones para:
+Consulté sobre los pasos necesarios para:
 
 * Crear migraciones.
 * Aplicarlas correctamente.
@@ -58,21 +85,23 @@ Se solicitaron indicaciones para:
 
 Resultado:
 
-Se logró administrar todas las entidades desde el panel de Django.
+Se logró administrar correctamente todas las entidades desde el panel de administración de Django.
 
 ---
 
-## Consulta 4: Carga y validación de datos
+## 4. Carga y validación de datos
 
-Se consultó sobre la forma de ingresar datos de prueba y validar las relaciones entre entidades.
+Consulté sobre la forma adecuada de cargar datos de prueba y verificar que las relaciones entre entidades funcionaran correctamente.
 
 Temas tratados:
 
 * Creación de profesores.
 * Creación de alumnos.
-* Asignación de cursadas.
+* Creación de asignaturas.
+* Creación de cursadas.
 * Creación de exámenes.
 * Asignación de exámenes a alumnos.
+* Validación de relaciones entre modelos.
 
 Resultado:
 
@@ -80,37 +109,35 @@ Se verificó correctamente la consistencia de los datos mediante el panel admini
 
 ---
 
-## Consulta 5: Consultas ORM
+## 5. Consultas ORM
 
-Se solicitó ayuda para construir y verificar consultas utilizando el ORM de Django.
+Consulté sobre la construcción y validación de consultas utilizando el ORM de Django.
 
-Consultas implementadas:
+Las consultas implementadas fueron:
 
-1. Obtener los exámenes creados por un profesor.
+1. Obtener todos los exámenes creados por un profesor.
 2. Obtener los exámenes asignados a un alumno junto con su calificación.
-3. Obtener los alumnos con exámenes pendientes de resolución.
+3. Obtener los alumnos que aún no han resuelto los exámenes asignados.
 
 Resultado:
 
-Las consultas fueron probadas utilizando `python manage.py shell` y devolvieron los resultados esperados.
+Las consultas fueron verificadas mediante `python manage.py shell` y contrastadas con los datos cargados desde el panel administrativo.
 
 ---
 
-## Consulta 6: Documentación y estructura final
+## 6. Documentación y estructura final
 
-Se consultó sobre:
+Consulté sobre:
 
-* Creación de README.
-* Generación de requirements.txt.
+* Creación y organización del archivo README.
+* Generación del archivo `requirements.txt`.
 * Organización final del repositorio.
 * Revisión de la estructura de entrega.
 
 Resultado:
 
-Se completó la documentación necesaria para facilitar la instalación y revisión del proyecto.
+Se completó la documentación necesaria para facilitar la instalación, comprensión y revisión del proyecto.
 
 ---
 
-## Conclusión
 
-La asistencia de IA fue utilizada como herramienta de apoyo técnico durante el desarrollo. Su principal aporte consistió en aclarar dudas sobre Django, Git, diseño de modelos y consultas ORM. Todas las decisiones finales, pruebas y verificaciones fueron realizadas sobre el proyecto implementado.
